@@ -1,0 +1,1510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>thebeautyrooms — Phase 2 Colour Exploration · v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink-1:   #1A2226;
+    --ink-2:   #4C5A60;
+    --ink-3:   #8A969C;
+    --rule:    #D9D4C8;
+    --paper:   #F5F1E6;
+    --paper-2: #ECE5D2;
+    --paper-3: #FBF8EE;
+    --paper-4: #FFFFFF;
+
+    /* P1 Atelier Lagoon */
+    --p1-dark:    #0F2832;
+    --p1-claire:  #3FBFB6;
+    --p1-jade:    #1F605D;
+    --p1-light:   #F6F1E2;
+
+    /* P2 Mineral Tide */
+    --p2-dark:    #19353A;
+    --p2-claire:  #4A9A92;
+    --p2-jade:    #1B4A47;
+    --p2-light:   #EDE6D4;
+
+    /* P3 Overcast Celadon */
+    --p3-dark:    #2A3835;
+    --p3-claire:  #A8D0CA;
+    --p3-jade:    #5C8480;
+    --p3-light:   #EFEADD;
+
+    --silver-hi:  #E6E5E1;
+    --silver-mid: #B9B7B1;
+    --silver-lo:  #7E7D78;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink-1); }
+  body {
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: 0.005em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .page { max-width: 1320px; margin: 0 auto; }
+
+  /* ─── Typography ─────────────────────────────── */
+  .display {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    line-height: 0.96;
+  }
+  .display-xl { font-size: clamp(60px, 9vw, 148px); }
+  .display-l  { font-size: clamp(40px, 5.4vw, 84px); }
+  .display-m  { font-size: clamp(28px, 3.4vw, 48px); }
+  .italic { font-style: italic; }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 400; font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-2);
+  }
+  .mono { font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.02em; }
+
+  .lede {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300; font-style: italic;
+    font-size: clamp(20px, 1.9vw, 28px);
+    line-height: 1.35; color: var(--ink-1);
+    max-width: 36ch;
+  }
+  .body p + p { margin-top: 0.9em; }
+  .body { color: var(--ink-2); max-width: 56ch; }
+
+  /* ─── Locked mark — rendered as inline SVG ─── */
+  img.logo, svg.logo { display: block; width: 100%; height: auto; max-width: 100%; }
+  svg.logo { overflow: visible; }
+  .logo--full       { aspect-ratio: 1 / 1; }
+  .logo--monogram   { aspect-ratio: 187 / 256; }
+  .logo--horizontal { aspect-ratio: 623 / 172; }
+  .is-deboss { opacity: 0.65; mix-blend-mode: screen; filter: drop-shadow(0 0.5px 0 rgba(255,255,255,0.06)); }
+
+  /* ─── Cover ──────────────────────────────────── */
+  .cover {
+    min-height: 100vh;
+    padding: 56px 80px 64px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 48px;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 32px;
+    position: relative; z-index: 2;
+  }
+  .cover-mid {
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    align-items: center; gap: 64px;
+    position: relative; z-index: 2;
+  }
+  .cover-foot {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px; align-items: end;
+    position: relative; z-index: 2;
+  }
+  .cover-foot .cell .v { margin-top: 6px; font-size: 13px; color: var(--ink-1); }
+
+  .cover-wash {
+    position: absolute; inset: 0; z-index: 1;
+    pointer-events: none; opacity: 0.55;
+  }
+  .cover-wash svg { width: 100%; height: 100%; }
+
+  /* Cover mark block */
+  .cover-mark {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    margin-left: auto;
+    display: grid;
+    place-items: center;
+  }
+  .cover-mark .logo { width: 100%; color: var(--ink-1); }
+  .cover-mark .stamp {
+    position: absolute; bottom: -28px; right: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.18em;
+    color: var(--ink-3); text-transform: uppercase;
+  }
+
+  /* ─── Section scaffolding ────────────────────── */
+  section { padding: 120px 80px; }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: end;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head h2 { font-size: clamp(40px, 5.4vw, 84px); }
+  .section-head .meta { display: flex; flex-direction: column; gap: 12px; }
+  .section-index {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--ink-3); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  /* ─── Palette stage ──────────────────────────── */
+  .palette-stage {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* Watercolour canvas */
+  .wc-canvas {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--paper-4);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 30px 60px -30px rgba(15,40,50,0.15);
+  }
+  .wc-canvas svg.wash { display: block; width: 100%; height: 100%; }
+  .wc-canvas .deckle {
+    position: absolute; inset: 0; pointer-events: none;
+    box-shadow:
+      inset 0 0 0 1px rgba(120,108,80,0.08),
+      inset 0 0 60px rgba(120,108,80,0.06);
+    border-radius: 2px;
+  }
+  .wc-canvas .caption {
+    position: absolute; left: 22px; bottom: 18px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-2);
+    opacity: 0.75; z-index: 5;
+  }
+  .wc-canvas .mark-on {
+    position: absolute;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+  }
+  .wc-canvas .mark-on .logo { width: 100%; }
+
+  /* ─── Swatch stack ───────────────────────────── */
+  .swatch-stack { display: flex; flex-direction: column; gap: 14px; }
+  .swatch {
+    position: relative;
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    column-gap: 18px;
+    align-items: center;
+    padding: 18px 20px;
+    background: var(--paper-3);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+  .swatch .chip {
+    width: 88px; height: 88px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.08);
+    position: relative; overflow: hidden;
+  }
+  .swatch .chip.silver {
+    background:
+      conic-gradient(from 210deg,
+        #cfcecb 0deg, #ffffff 40deg, #b6b4ae 110deg,
+        #ededea 170deg, #8b8a86 230deg, #d6d5d1 300deg, #cfcecb 360deg);
+  }
+  .swatch .meta {
+    display: flex; flex-direction: column; gap: 4px;
+    min-width: 0;
+  }
+  .swatch .row {
+    display: flex; align-items: baseline;
+    justify-content: space-between; gap: 12px;
+  }
+  .swatch .role {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .swatch .name {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: clamp(20px, 1.6vw, 24px);
+    letter-spacing: -0.005em;
+    line-height: 1.05;
+  }
+  .swatch .codes {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-2);
+    line-height: 1.45;
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+  .swatch .codes span { white-space: nowrap; }
+
+  /* ─── Notes panel ────────────────────────────── */
+  .notes {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .notes .col h4 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-1);
+    margin-bottom: 14px;
+  }
+  .notes .col p {
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: 14px; line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .notes .col p + p { margin-top: 10px; }
+
+  /* ─── Applications strip ─────────────────────── */
+  .apps {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .app-card {
+    border: 1px solid var(--rule);
+    background: var(--paper-3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .app-card .head {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 8px;
+  }
+  .app-card .head .t {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-1);
+  }
+  .app-card .head .s {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-3);
+    text-align: right;
+  }
+  .app-card .body { padding: 0; aspect-ratio: 5 / 6; position: relative; overflow: hidden; }
+
+  /* Appointment card mock */
+  .appt {
+    position: absolute; inset: 0;
+    display: grid; grid-template-rows: 1fr auto;
+    padding: 32px 26px 22px;
+  }
+  .appt .wc-back { position: absolute; inset: 0; }
+  .appt .wc-back svg { width: 100%; height: 100%; display: block; }
+  .appt .center {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px;
+  }
+  .appt .center .logo { width: 75%; max-width: 220px; }
+  .appt .foot {
+    position: relative; z-index: 2;
+    border-top: 1px solid currentColor;
+    padding-top: 10px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; opacity: 0.7;
+  }
+
+  /* Social tile */
+  .social { position: absolute; inset: 0; overflow: hidden; }
+  .social .wc-back { position: absolute; inset: 0; }
+  .social .wc-back svg { width: 100%; height: 100%; }
+  .social .text {
+    position: absolute; inset: auto 0 0 0;
+    padding: 24px 26px; z-index: 2;
+  }
+  .social .text .h {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300; font-style: italic;
+    font-size: clamp(22px, 2.4vw, 32px); line-height: 1.02;
+    letter-spacing: -0.005em;
+  }
+  .social .text .s {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-top: 12px; opacity: 0.75;
+  }
+  .social .corner-mark {
+    position: absolute; top: 20px; left: 20px; z-index: 2;
+    width: 110px;
+  }
+
+  /* Foil card */
+  .foil-card { position: absolute; inset: 0; display: grid; place-items: center; }
+  .foil-card .wc-back { position: absolute; inset: 0; }
+  .foil-card .wc-back svg { width: 100%; height: 100%; }
+  .foil-card .stage {
+    position: relative; z-index: 2;
+    width: 60%; max-width: 220px;
+  }
+
+  /* ─── Comparison matrix ──────────────────────── */
+  .matrix {
+    margin-top: 56px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--paper-3);
+  }
+  .matrix table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .matrix th, .matrix td {
+    text-align: left; padding: 16px 20px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .matrix th:not(:first-child), .matrix td:not(:first-child) {
+    border-left: 1px solid var(--rule);
+  }
+  .matrix thead th {
+    background: var(--paper-2);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-1);
+    font-weight: 400;
+  }
+  .matrix tbody th {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-2);
+    font-weight: 400; width: 22%;
+  }
+  .matrix tbody tr:last-child td,
+  .matrix tbody tr:last-child th { border-bottom: 0; }
+
+  .dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: -1px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* ─── Appendix ───────────────────────────────── */
+  .appendix {
+    background: var(--ink-1);
+    color: var(--paper);
+  }
+  .appendix .eyebrow, .appendix .label { color: rgba(245,241,230,0.6); }
+  .appendix h2 { color: var(--paper); }
+  .appendix .body { color: rgba(245,241,230,0.78); }
+  .appendix .section-head { border-color: rgba(245,241,230,0.18); }
+
+  .silver-strip {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .silver-card {
+    aspect-ratio: 1 / 1.1;
+    border: 1px solid rgba(245,241,230,0.18);
+    border-radius: 2px;
+    display: grid; grid-template-rows: 1fr auto;
+    overflow: hidden;
+    background: rgba(245,241,230,0.02);
+  }
+  .silver-card .top { display: grid; place-items: center; padding: 22px; }
+  .silver-card .top .logo { width: 72%; }
+  .silver-card .label-row {
+    padding: 12px 14px;
+    border-top: 1px solid rgba(245,241,230,0.18);
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(245,241,230,0.7);
+  }
+
+  /* ─── Footer ─────────────────────────────────── */
+  footer {
+    padding: 56px 80px 64px;
+    border-top: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 32px; align-items: end;
+  }
+
+  /* ─── Responsive ────────────────────────────── */
+  @media (max-width: 1100px) {
+    .palette-stage { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 920px) {
+    .cover-mid, .section-head { grid-template-columns: 1fr; gap: 32px; }
+    .notes, .apps { grid-template-columns: 1fr; gap: 24px; }
+    section { padding: 80px 32px; }
+    .cover { padding: 40px 32px; }
+    .cover-foot { grid-template-columns: 1fr 1fr; }
+    footer { padding: 40px 32px; grid-template-columns: 1fr; }
+    .silver-strip { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     GLOBAL SVG DEFINITIONS — watercolour filters
+     ════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="wc-edge-big" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="3" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="42" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wc-edge-med" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.022" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="24" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wc-edge-small" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="11" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="ring-wobble" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="5"/>
+      <feDisplacementMap in="SourceGraphic" scale="3.2"/>
+    </filter>
+
+    <radialGradient id="silver-fleck" cx="40%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="30%"  stop-color="#E8E6E1"/>
+      <stop offset="70%"  stop-color="#9F9D98"/>
+      <stop offset="100%" stop-color="#6B6A66"/>
+    </radialGradient>
+
+    <!-- Logo-specific defs -->
+    <filter id="ring-wobble-sm" x="-12%" y="-12%" width="124%" height="124%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <linearGradient id="tbr-silver" x1="18%" y1="18%" x2="82%" y2="82%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="22%"  stop-color="#E8E6E1"/>
+      <stop offset="52%"  stop-color="#9F9D98"/>
+      <stop offset="78%"  stop-color="#E0DEDB"/>
+      <stop offset="100%" stop-color="#6B6A66"/>
+    </linearGradient>
+    <linearGradient id="tbr-brushed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#C8C6C2"/>
+      <stop offset="32%"  stop-color="#E4E2DE"/>
+      <stop offset="62%"  stop-color="#AEACA8"/>
+      <stop offset="100%" stop-color="#D2D0CC"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ════════════════════════════════════════════════
+     COVER
+     ════════════════════════════════════════════════ -->
+<section class="cover" data-screen-label="00 Cover">
+
+  <div class="cover-wash">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="cv-a" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#3FBFB6" stop-opacity="0.55"/>
+          <stop offset="55%" stop-color="#3FBFB6" stop-opacity="0.35"/>
+          <stop offset="85%" stop-color="#1F4E4A" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#1F4E4A" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="cv-b" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#19353A" stop-opacity="0.5"/>
+          <stop offset="70%" stop-color="#19353A" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#19353A" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="cv-c" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#A8D0CA" stop-opacity="0.6"/>
+          <stop offset="80%" stop-color="#A8D0CA" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#A8D0CA" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g filter="url(#wc-edge-big)" style="mix-blend-mode: multiply;">
+        <ellipse cx="1100" cy="180" rx="320" ry="260" fill="url(#cv-a)"/>
+        <ellipse cx="1280" cy="320" rx="180" ry="150" fill="url(#cv-a)"/>
+      </g>
+      <g filter="url(#wc-edge-big)" style="mix-blend-mode: multiply;">
+        <ellipse cx="160" cy="780" rx="280" ry="220" fill="url(#cv-b)"/>
+      </g>
+      <g filter="url(#wc-edge-med)" style="mix-blend-mode: multiply;">
+        <ellipse cx="780" cy="900" rx="220" ry="140" fill="url(#cv-c)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="cover-head">
+    <div>
+      <div class="eyebrow">thebeautyrooms · TBR</div>
+      <div class="eyebrow" style="margin-top:6px; color: var(--ink-3);">Phase 02 — Colour Identity</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="eyebrow">Internal Dossier · v03</div>
+      <div class="eyebrow" style="margin-top:6px; color: var(--ink-3);">Rev. 03 · May 2026</div>
+    </div>
+  </div>
+
+  <div class="cover-mid">
+    <div>
+      <div class="display display-xl">
+        Three<br/>
+        <span class="italic">waters,</span><br/>
+        one paper.
+      </div>
+      <p class="lede" style="margin-top:36px;">
+        A sea-led colour study built around real watercolour behaviour — bloom, bleed,
+        granulation and the fine silver fleck where the pigment dries.
+      </p>
+    </div>
+
+    <div class="cover-mark">
+      <img class="logo logo--full" src="assets/brand/full__ink.png" alt="thebeautyrooms locked mark"/>
+      <div class="stamp">locked mark · phase 01</div>
+    </div>
+  </div>
+
+  <div class="cover-foot">
+    <div class="cell"><div class="label">Brief</div><div class="v">Sea-inspired, desaturated, sophisticated.</div></div>
+    <div class="cell"><div class="label">Positioning</div><div class="v">Quiet Luxury · Soft Luxe.</div></div>
+    <div class="cell"><div class="label">Mediums</div><div class="v">CMYK · Pantone · Web · Social.</div></div>
+    <div class="cell"><div class="label">Metal</div><div class="v">Silver. One spec, four finishes.</div></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     DIRECTOR'S NOTE
+     ════════════════════════════════════════════════ -->
+<section data-screen-label="01 Director's Note">
+  <div class="section-head">
+    <div>
+      <div class="section-index">01 · Director's Note</div>
+      <h2 class="display"><span class="italic">Three</span> distinct<br/>aesthetics.</h2>
+    </div>
+    <div class="body">
+      <p>Previous round read as three near-identical washes. This revision separates the palettes by <em>aesthetic</em>, not just hue — a different watercolour <strong>composition</strong>, <strong>energy</strong> and <strong>silver behaviour</strong> for each. They should look like three different paintings from the same studio.</p>
+      <p><strong>01 — Atelier Lagoon.</strong> The sunlit, vibrant page. Cyan bloom, scattered silver flecks, light-handed and clean.</p>
+      <p><strong>02 — Mineral Tide.</strong> The dramatic, ink-deep page. A diagonal jade tideline with a single silver vein where pigment meets paper.</p>
+      <p><strong>03 — Overcast Celadon.</strong> The almost-empty page. A breath of celadon mist, a sparse silver dust. The quietest of the three.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PALETTE 01 — ATELIER LAGOON
+     ════════════════════════════════════════════════ -->
+<section data-screen-label="02 Atelier Lagoon">
+  <div class="section-head">
+    <div>
+      <div class="section-index">02 · Palette one</div>
+      <h2 class="display">Atelier<br/><span class="italic">Lagoon</span></h2>
+    </div>
+    <div class="meta">
+      <span class="label">Aesthetic — sunlit · vibrant · summer-led</span>
+      <span class="label">Composition — centred bloom · scattered flecks</span>
+      <span class="label">Silver — bright foil dust across the wash</span>
+    </div>
+  </div>
+
+  <div class="palette-stage">
+    <div class="wc-canvas" style="background: #FDFAEF;">
+      <svg class="wash" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="p1-bloom-a" cx="50%" cy="42%" r="55%">
+            <stop offset="0%"  stop-color="#86DDD5" stop-opacity="0.20"/>
+            <stop offset="55%" stop-color="#3FBFB6" stop-opacity="0.55"/>
+            <stop offset="85%" stop-color="#1F605D" stop-opacity="0.75"/>
+            <stop offset="100%" stop-color="#1F605D" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="p1-bloom-b" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="#3FBFB6" stop-opacity="0.10"/>
+            <stop offset="60%" stop-color="#3FBFB6" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#1F605D" stop-opacity="0.0"/>
+          </radialGradient>
+          <radialGradient id="p1-bloom-c" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="#0F2832" stop-opacity="0.0"/>
+            <stop offset="60%" stop-color="#0F2832" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#0F2832" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+          <ellipse cx="300" cy="380" rx="220" ry="200" fill="url(#p1-bloom-a)"/>
+          <ellipse cx="240" cy="430" rx="160" ry="140" fill="url(#p1-bloom-b)"/>
+          <ellipse cx="380" cy="320" rx="140" ry="120" fill="url(#p1-bloom-b)"/>
+        </g>
+        <g style="mix-blend-mode: multiply; opacity: 0.7;" filter="url(#wc-edge-med)">
+          <ellipse cx="420" cy="460" rx="80" ry="55" fill="url(#p1-bloom-c)"/>
+          <ellipse cx="200" cy="320" rx="60" ry="42" fill="url(#p1-bloom-c)"/>
+        </g>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-med)">
+          <ellipse cx="120" cy="160" rx="50" ry="38" fill="url(#p1-bloom-b)"/>
+          <ellipse cx="500" cy="640" rx="58" ry="44" fill="url(#p1-bloom-b)"/>
+          <ellipse cx="480" cy="110" rx="36" ry="28" fill="url(#p1-bloom-a)" opacity="0.6"/>
+          <ellipse cx="90"  cy="680" rx="42" ry="34" fill="url(#p1-bloom-a)" opacity="0.55"/>
+        </g>
+        <g>
+          <circle cx="312" cy="180" r="3.4" fill="url(#silver-fleck)"/>
+          <circle cx="244" cy="262" r="2.2" fill="url(#silver-fleck)"/>
+          <circle cx="180" cy="340" r="2.8" fill="url(#silver-fleck)"/>
+          <circle cx="404" cy="240" r="2.4" fill="url(#silver-fleck)"/>
+          <circle cx="466" cy="382" r="3.0" fill="url(#silver-fleck)"/>
+          <circle cx="284" cy="540" r="3.4" fill="url(#silver-fleck)"/>
+          <circle cx="358" cy="492" r="1.8" fill="url(#silver-fleck)"/>
+          <circle cx="220" cy="608" r="2.6" fill="url(#silver-fleck)"/>
+          <circle cx="160" cy="488" r="2.0" fill="url(#silver-fleck)"/>
+          <circle cx="406" cy="568" r="2.2" fill="url(#silver-fleck)"/>
+          <circle cx="486" cy="284" r="1.8" fill="url(#silver-fleck)"/>
+          <circle cx="142" cy="218" r="2.0" fill="url(#silver-fleck)"/>
+          <circle cx="120" cy="600" r="1.6" fill="url(#silver-fleck)"/>
+          <circle cx="510" cy="160" r="1.4" fill="url(#silver-fleck)"/>
+          <circle cx="80"  cy="420" r="1.4" fill="url(#silver-fleck)"/>
+          <circle cx="540" cy="540" r="1.6" fill="url(#silver-fleck)"/>
+          <circle cx="332" cy="312" r="1" fill="#E8E6E1"/>
+          <circle cx="260" cy="380" r="1" fill="#E8E6E1"/>
+          <circle cx="376" cy="436" r="1" fill="#E8E6E1"/>
+          <circle cx="208" cy="492" r="1" fill="#E8E6E1"/>
+          <circle cx="438" cy="312" r="1" fill="#E8E6E1"/>
+        </g>
+      </svg>
+
+      <div class="mark-on" style="left: 50%; top: 50%; transform: translate(-50%, -50%); width: 58%;">
+        <img class="logo logo--full" src="assets/brand/full__p1Dark.png" alt=""/>
+      </div>
+
+      <div class="deckle"></div>
+      <span class="caption">AL · centred bloom · scattered silver fleck</span>
+    </div>
+
+    <div class="swatch-stack">
+      <div class="swatch">
+        <div class="chip" style="background: var(--p1-dark);"></div>
+        <div class="meta">
+          <div class="row">
+            <span class="role">Primary dark</span>
+            <span class="role">text &amp; mark</span>
+          </div>
+          <span class="name">Deep Reef</span>
+          <div class="codes"><span>#0F2832</span><span>PMS 5463 C</span><span>C88 M62 Y52 K72</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p1-claire);"></div>
+        <div class="meta">
+          <div class="row">
+            <span class="role">Claire turquoise</span>
+            <span class="role">accent</span>
+          </div>
+          <span class="name">Lagoon Light</span>
+          <div class="codes"><span>#3FBFB6</span><span>PMS 3252 C</span><span>C68 M0 Y36 K0</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p1-jade);"></div>
+        <div class="meta">
+          <div class="row">
+            <span class="role">Jade winter</span>
+            <span class="role">seasonal anchor</span>
+          </div>
+          <span class="name">Cypress Shadow</span>
+          <div class="codes"><span>#1F605D</span><span>PMS 5473 C</span><span>C85 M40 Y52 K30</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p1-light);"></div>
+        <div class="meta">
+          <div class="row">
+            <span class="role">Light neutral</span>
+            <span class="role">ground</span>
+          </div>
+          <span class="name">Bone Sand</span>
+          <div class="codes"><span>#F6F1E2</span><span>PMS 9184 C</span><span>C2 M3 Y14 K0</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip silver"></div>
+        <div class="meta">
+          <div class="row">
+            <span class="role">Metal</span>
+            <span class="role">3-ring border</span>
+          </div>
+          <span class="name">Bright Foil</span>
+          <div class="codes"><span>PMS 8001 C</span><span>hot-foil stamp</span><span>all three rings</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="col">
+      <h4>Aesthetic Concept</h4>
+      <p>The most legible read on the client's brief: water you can see your feet through. A single centred bloom that lets the wordmark sit in the brightest part of the page, framed by scatter and silver dust. The composition is symmetric on purpose — this palette is the calmest in <em>geometry</em>, the most vibrant in <em>hue</em>.</p>
+    </div>
+    <div class="col">
+      <h4>Watercolour Execution</h4>
+      <p><strong>Print.</strong> Two-plate process on coated cotton: PMS 3252 + PMS 5473 with a screen build for the bloom. The fleck is a third pass — PMS 8001 silver in fine confetti dots, hand-positioned per layout. Cotton paper is non-negotiable; cheap stock kills the bleed.</p>
+      <p><strong>Digital.</strong> Stacked radial gradients with displacement-noise edges rendered as multiply layers. Silver flecks are real SVG circles with a radial metallic fill, not flat dots.</p>
+    </div>
+    <div class="col">
+      <h4>Silver &amp; the 3-Ring Border</h4>
+      <p>All three rings receive the foil — Lagoon's openness can carry the metallic weight. The rings sit in the lightest area of the wash, so the silver reads clearly against paper white without competing with the wordmark.</p>
+      <p>Loose silver flecks elsewhere on the page are <em>decorative spill</em> and may be omitted at small scales (e.g. appointment cards under 70 mm wide).</p>
+    </div>
+  </div>
+
+  <div class="apps">
+    <div class="app-card">
+      <div class="head"><span class="t">A — Appointment Card</span><span class="s">85 × 110 mm · coated</span></div>
+      <div class="body">
+        <div class="appt" style="background: var(--p1-light); color: var(--p1-dark);">
+          <svg class="wc-back" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="a1a" cx="50%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#3FBFB6" stop-opacity="0.35"/>
+                <stop offset="70%" stop-color="#1F605D" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#1F605D" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <ellipse cx="200" cy="220" rx="170" ry="160" fill="url(#a1a)"/>
+            </g>
+            <g>
+              <circle cx="140" cy="120" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="260" cy="100" r="1.4" fill="url(#silver-fleck)"/>
+              <circle cx="310" cy="240" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="90" cy="280" r="1.4" fill="url(#silver-fleck)"/>
+              <circle cx="220" cy="370" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="180" cy="180" r="1" fill="#E8E6E1"/>
+              <circle cx="260" cy="280" r="1" fill="#E8E6E1"/>
+            </g>
+          </svg>
+          <div class="center">
+            <img class="logo logo--full" src="assets/brand/full__p1Dark.png" alt=""/>
+          </div>
+          <div class="foot"><span>next appointment</span><span>22 · 07 · 26</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="head"><span class="t">B — Editorial Tile</span><span class="s">1080 × 1080 · social</span></div>
+      <div class="body">
+        <div class="social" style="background: var(--p1-light); color: var(--p1-dark);">
+          <svg class="wc-back" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="a1b" cx="30%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#3FBFB6" stop-opacity="0.45"/>
+                <stop offset="65%" stop-color="#1F605D" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#1F605D" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <ellipse cx="150" cy="150" rx="240" ry="200" fill="url(#a1b)"/>
+              <ellipse cx="380" cy="380" rx="160" ry="140" fill="url(#a1b)" opacity="0.6"/>
+            </g>
+            <g>
+              <circle cx="200" cy="80" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="320" cy="200" r="2" fill="url(#silver-fleck)"/>
+              <circle cx="80" cy="280" r="1.4" fill="url(#silver-fleck)"/>
+              <circle cx="440" cy="120" r="1.4" fill="url(#silver-fleck)"/>
+              <circle cx="280" cy="430" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="160" cy="380" r="1" fill="#E8E6E1"/>
+              <circle cx="350" cy="300" r="1" fill="#E8E6E1"/>
+            </g>
+          </svg>
+          <div class="corner-mark"><img class="logo logo--horizontal" src="assets/brand/horizontal__p1Dark.png" alt=""/></div>
+          <div class="text">
+            <div class="h"><em>Summer</em><br/>arrives in<br/>the rooms.</div>
+            <div class="s">Editions — limited residencies</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="head"><span class="t">C — Foil Mark</span><span class="s">silver on sand</span></div>
+      <div class="body">
+        <div class="foil-card" style="background: var(--p1-light); color: var(--p1-dark);">
+          <svg class="wc-back" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="a1c" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3FBFB6" stop-opacity="0.3"/>
+                <stop offset="80%" stop-color="#1F605D" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#1F605D" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <ellipse cx="250" cy="300" rx="200" ry="190" fill="url(#a1c)"/>
+            </g>
+            <g>
+              <circle cx="150" cy="150" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="380" cy="180" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="120" cy="440" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="400" cy="460" r="1.6" fill="url(#silver-fleck)"/>
+              <circle cx="80" cy="280" r="1" fill="#E8E6E1"/>
+              <circle cx="440" cy="320" r="1" fill="#E8E6E1"/>
+            </g>
+          </svg>
+          <div class="stage">
+            <img class="logo logo--monogram" src="assets/brand/monogram__silver.png" alt=""/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PALETTE 02 — MINERAL TIDE
+     ════════════════════════════════════════════════ -->
+<section data-screen-label="03 Mineral Tide" style="background: var(--paper-2);">
+  <div class="section-head">
+    <div>
+      <div class="section-index">03 · Palette two</div>
+      <h2 class="display"><span class="italic">Mineral</span><br/>Tide</h2>
+    </div>
+    <div class="meta">
+      <span class="label">Aesthetic — moody · stormy · ink-deep</span>
+      <span class="label">Composition — diagonal tideline · silver vein</span>
+      <span class="label">Silver — single luminous river-edge</span>
+    </div>
+  </div>
+
+  <div class="palette-stage">
+    <div class="wc-canvas" style="background: #FFFFFF;">
+      <svg class="wash" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="p2-deep" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0E2A2D" stop-opacity="0.85"/>
+            <stop offset="40%" stop-color="#1B4A47" stop-opacity="0.75"/>
+            <stop offset="75%" stop-color="#4A9A92" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#4A9A92" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="p2-blob" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#4A9A92" stop-opacity="0.4"/>
+            <stop offset="80%" stop-color="#1B4A47" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#1B4A47" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+          <path d="M 0 0 L 0 720 Q 80 700, 140 620 Q 200 540, 240 460 Q 280 380, 260 300 Q 240 220, 280 140 Q 320 60, 380 0 Z" fill="url(#p2-deep)"/>
+        </g>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+          <ellipse cx="120" cy="240" rx="140" ry="120" fill="url(#p2-blob)"/>
+          <ellipse cx="180" cy="540" rx="120" ry="100" fill="url(#p2-blob)"/>
+          <ellipse cx="60"  cy="100" rx="100" ry="120" fill="url(#p2-blob)" opacity="0.7"/>
+        </g>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-med)">
+          <ellipse cx="380" cy="640" rx="70" ry="55" fill="url(#p2-blob)" opacity="0.6"/>
+          <ellipse cx="460" cy="720" rx="50" ry="38" fill="url(#p2-blob)" opacity="0.5"/>
+          <ellipse cx="320" cy="200" rx="50" ry="40" fill="url(#p2-blob)" opacity="0.5"/>
+        </g>
+        <g>
+          <path d="M 380 0 Q 320 60, 280 140 Q 240 220, 260 300 Q 280 380, 240 460 Q 200 540, 140 620 Q 80 700, 0 720"
+            fill="none" stroke="url(#silver-fleck)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#ring-wobble)"/>
+          <circle cx="280" cy="140" r="1.6" fill="url(#silver-fleck)"/>
+          <circle cx="240" cy="460" r="1.8" fill="url(#silver-fleck)"/>
+          <circle cx="140" cy="620" r="1.6" fill="url(#silver-fleck)"/>
+          <circle cx="260" cy="300" r="1.4" fill="url(#silver-fleck)"/>
+          <circle cx="200" cy="540" r="1" fill="url(#silver-fleck)"/>
+          <circle cx="320" cy="60"  r="1" fill="url(#silver-fleck)"/>
+        </g>
+        <g transform="translate(500 680)" opacity="0.55">
+          <path d="M 0 -6 L 0 6 M -6 0 L 6 0 M -4 -4 L 4 4 M -4 4 L 4 -4" stroke="url(#silver-fleck)" stroke-width="0.6"/>
+        </g>
+      </svg>
+
+      <!-- Mark sits in open paper area (right side) -->
+      <div class="mark-on" style="left: 66%; top: 50%; transform: translate(-50%, -50%); width: 46%;">
+        <img class="logo logo--full" src="assets/brand/full__p2Dark.png" alt=""/>
+      </div>
+
+      <div class="deckle"></div>
+      <span class="caption">MT · diagonal tideline · silver vein</span>
+    </div>
+
+    <div class="swatch-stack">
+      <div class="swatch">
+        <div class="chip" style="background: var(--p2-dark);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Primary dark</span><span class="role">text &amp; mark</span></div>
+          <span class="name">Slate Bathystem</span>
+          <div class="codes"><span>#19353A</span><span>PMS 5395 C</span><span>C85 M58 Y52 K58</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p2-claire);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Claire turquoise</span><span class="role">accent</span></div>
+          <span class="name">Tide Glass</span>
+          <div class="codes"><span>#4A9A92</span><span>PMS 564 C</span><span>C68 M14 Y42 K2</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p2-jade);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Jade winter</span><span class="role">seasonal anchor</span></div>
+          <span class="name">Quarry Jade</span>
+          <div class="codes"><span>#1B4A47</span><span>PMS 5483 C</span><span>C84 M45 Y55 K40</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p2-light);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Light neutral</span><span class="role">ground</span></div>
+          <span class="name">Beach Linen</span>
+          <div class="codes"><span>#EDE6D4</span><span>PMS Warm Gray 1</span><span>C5 M6 Y17 K0</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip silver"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Metal</span><span class="role">3-ring border</span></div>
+          <span class="name">Vein Silver</span>
+          <div class="codes"><span>PMS 877 C</span><span>single foil line</span><span>inner rings inked</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="col">
+      <h4>Aesthetic Concept</h4>
+      <p>The dramatic page. Pigment runs corner to corner like a coastline at storm; the wordmark sits in the negative space the water hasn't reached. The most cinematic of the three palettes and the one that shows the silver to its best advantage — one vein, not confetti.</p>
+    </div>
+    <div class="col">
+      <h4>Watercolour Execution</h4>
+      <p><strong>Print.</strong> Mould-made watercolour stock (Fabriano Artistico or Arches Aquarelle) flooded with two-pass PMS 5483 build. The silver vein is a fine hot-foil strike — 0.4 pt minimum — registered to follow the dried edge.</p>
+      <p><strong>Digital.</strong> A diagonal SVG path filled with a linear gradient, edge-displaced for organic dry. The silver vein is a single stroked path with the same displacement filter applied — so vein and watercolour share one geometry.</p>
+    </div>
+    <div class="col">
+      <h4>Silver &amp; the 3-Ring Border</h4>
+      <p>The 3-ring border is rendered <em>tonally</em>, not metallically. Outer ring in PMS 877 silver foil; the two inner rings drop to Slate Bathystem ink — the silver becomes the rim, not the whole mark.</p>
+      <p>The independent vein on the page reads as the metallic. The border and the vein speak to each other without doubling up.</p>
+    </div>
+  </div>
+
+  <div class="apps">
+    <div class="app-card">
+      <div class="head"><span class="t">A — Appointment Card</span><span class="s">85 × 110 mm · cotton</span></div>
+      <div class="body">
+        <div class="appt" style="background: var(--p2-light); color: var(--p2-dark);">
+          <svg class="wc-back" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="a2a" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0E2A2D" stop-opacity="0.7"/>
+                <stop offset="60%" stop-color="#1B4A47" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#1B4A47" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <path d="M 0 0 L 0 400 Q 80 380, 130 320 Q 180 260, 160 180 Q 140 100, 180 0 Z" fill="url(#a2a)"/>
+            </g>
+            <path d="M 180 0 Q 140 100, 160 180 Q 180 260, 130 320 Q 80 380, 0 400"
+              fill="none" stroke="url(#silver-fleck)" stroke-width="1" filter="url(#ring-wobble)"/>
+          </svg>
+          <div class="center">
+            <img class="logo logo--full" src="assets/brand/full__p2Dark.png" alt=""/>
+          </div>
+          <div class="foot"><span>next appointment</span><span>14 · 06 · 26</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="head"><span class="t">B — Editorial Tile</span><span class="s">1080 × 1080 · social</span></div>
+      <div class="body">
+        <div class="social" style="background: var(--p2-light); color: var(--p2-dark);">
+          <svg class="wc-back" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="a2b" x1="0%" y1="0%" x2="100%" y2="120%">
+                <stop offset="0%" stop-color="#0E2A2D" stop-opacity="0.75"/>
+                <stop offset="60%" stop-color="#1B4A47" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#1B4A47" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <path d="M 0 0 L 0 500 L 200 500 Q 240 380, 200 280 Q 160 180, 220 80 Q 260 20, 240 0 Z" fill="url(#a2b)"/>
+            </g>
+            <path d="M 240 0 Q 260 20, 220 80 Q 160 180, 200 280 Q 240 380, 200 500"
+              fill="none" stroke="url(#silver-fleck)" stroke-width="1.2" filter="url(#ring-wobble)"/>
+          </svg>
+          <div class="corner-mark" style="left: auto; right: 20px;">
+            <img class="logo logo--horizontal" src="assets/brand/horizontal__p2Dark.png" alt=""/>
+          </div>
+          <div class="text" style="right:0; max-width: 70%; margin-left: auto; text-align: right; padding-right: 26px;">
+            <div class="h">Booking<br/>for the<br/><em>cooler</em> season.</div>
+            <div class="s">September — thebeautyrooms.co</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="head"><span class="t">C — Foil Mark</span><span class="s">silver on linen</span></div>
+      <div class="body">
+        <div class="foil-card" style="background: var(--p2-light); color: var(--p2-dark);">
+          <svg class="wc-back" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="a2c" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#0E2A2D" stop-opacity="0.55"/>
+                <stop offset="60%" stop-color="#1B4A47" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#1B4A47" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <path d="M 0 600 L 200 600 Q 240 480, 220 360 Q 200 240, 260 120 Q 290 40, 240 0 L 0 0 Z" fill="url(#a2c)"/>
+            </g>
+          </svg>
+          <div class="stage">
+            <img class="logo logo--monogram" src="assets/brand/monogram__silver.png" alt=""/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PALETTE 03 — OVERCAST CELADON
+     ════════════════════════════════════════════════ -->
+<section data-screen-label="04 Overcast Celadon">
+  <div class="section-head">
+    <div>
+      <div class="section-index">04 · Palette three</div>
+      <h2 class="display">Overcast<br/><span class="italic">Celadon</span></h2>
+    </div>
+    <div class="meta">
+      <span class="label">Aesthetic — fog · ceramic · whispered</span>
+      <span class="label">Composition — sparse · empty · breath of mist</span>
+      <span class="label">Silver — dust · 5–7 catchlights only</span>
+    </div>
+  </div>
+
+  <div class="palette-stage">
+    <div class="wc-canvas" style="background: #FBFAF4;">
+      <svg class="wash" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="p3-fog" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="#A8D0CA" stop-opacity="0.35"/>
+            <stop offset="60%" stop-color="#5C8480" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#5C8480" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="p3-mist" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#A8D0CA" stop-opacity="0.25"/>
+            <stop offset="80%" stop-color="#A8D0CA" stop-opacity="0.05"/>
+            <stop offset="100%" stop-color="#A8D0CA" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+          <ellipse cx="180" cy="600" rx="260" ry="200" fill="url(#p3-fog)"/>
+          <ellipse cx="120" cy="540" rx="160" ry="120" fill="url(#p3-mist)"/>
+        </g>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+          <ellipse cx="480" cy="180" rx="180" ry="140" fill="url(#p3-mist)" opacity="0.6"/>
+        </g>
+        <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-small)">
+          <circle cx="160" cy="580" r="14" fill="#5C8480" opacity="0.18"/>
+          <circle cx="200" cy="640" r="10" fill="#5C8480" opacity="0.14"/>
+          <circle cx="120" cy="620" r="8"  fill="#5C8480" opacity="0.16"/>
+        </g>
+        <g>
+          <circle cx="280" cy="520" r="2"   fill="url(#silver-fleck)"/>
+          <circle cx="200" cy="680" r="1.6" fill="url(#silver-fleck)"/>
+          <circle cx="80"  cy="620" r="1.6" fill="url(#silver-fleck)"/>
+          <circle cx="500" cy="280" r="1.8" fill="url(#silver-fleck)"/>
+          <circle cx="380" cy="720" r="1.4" fill="url(#silver-fleck)"/>
+          <circle cx="540" cy="140" r="1.4" fill="url(#silver-fleck)"/>
+          <circle cx="120" cy="160" r="1"   fill="#E8E6E1"/>
+        </g>
+      </svg>
+
+      <!-- Mark — upper-mid, in the open paper -->
+      <div class="mark-on" style="left: 42%; top: 36%; transform: translate(-50%, -50%); width: 50%;">
+        <img class="logo logo--full" src="assets/brand/full__p3Dark.png" alt=""/>
+      </div>
+
+      <div class="deckle"></div>
+      <span class="caption">OC · breath of fog · sparse silver dust</span>
+    </div>
+
+    <div class="swatch-stack">
+      <div class="swatch">
+        <div class="chip" style="background: var(--p3-dark);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Primary dark</span><span class="role">text &amp; mark</span></div>
+          <span class="name">Driftwood Graphite</span>
+          <div class="codes"><span>#2A3835</span><span>PMS 5467 C</span><span>C72 M52 Y58 K55</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p3-claire);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Claire turquoise</span><span class="role">accent</span></div>
+          <span class="name">Sea Mist</span>
+          <div class="codes"><span>#A8D0CA</span><span>PMS 5523 C</span><span>C32 M2 Y22 K0</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p3-jade);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Jade winter</span><span class="role">seasonal anchor</span></div>
+          <span class="name">Harbour Pine</span>
+          <div class="codes"><span>#5C8480</span><span>PMS 5483 C</span><span>C62 M30 Y40 K10</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--p3-light);"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Light neutral</span><span class="role">ground</span></div>
+          <span class="name">Chalk Plaster</span>
+          <div class="codes"><span>#EFEADD</span><span>PMS 9163 C</span><span>C4 M5 Y14 K0</span></div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip silver"></div>
+        <div class="meta">
+          <div class="row"><span class="role">Metal</span><span class="role">3-ring border</span></div>
+          <span class="name">Matte Silver</span>
+          <div class="codes"><span>PMS 877 C</span><span>+ matte varnish</span><span>outer ring only</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="col">
+      <h4>Aesthetic Concept</h4>
+      <p>The page that is mostly paper. A pulled-back celadon as a breath — never a statement. This is the option to choose if the brand should look most like a Japanese ceramics studio. Lowest energy, highest restraint, most generous use of negative space.</p>
+    </div>
+    <div class="col">
+      <h4>Watercolour Execution</h4>
+      <p><strong>Print.</strong> A 10–14% screen of Harbour Pine printed onto Colorplan Bone or Crush Tea Leaf. Tone-on-tone — the wash is felt, not seen. Silver dust is matte foil, kept under seven specks per A4.</p>
+      <p><strong>Digital.</strong> A single low-amplitude SVG bloom at 24% maximum opacity. Animations and parallax are off-limits — the wash must feel weather, not motion.</p>
+    </div>
+    <div class="col">
+      <h4>Silver &amp; the 3-Ring Border</h4>
+      <p>The quietest silver of the three. Matte foil on the outer ring only; the two inner rings step down to a 60% tint of Driftwood Graphite, introducing a third tonal interval so the silver doesn't shout.</p>
+      <p>On screen, silver is a flat muted gradient (#C9C8C3 → #9A9994) at 1 px stroke — no animated shimmer.</p>
+    </div>
+  </div>
+
+  <div class="apps">
+    <div class="app-card">
+      <div class="head"><span class="t">A — Appointment Card</span><span class="s">85 × 110 mm · house stock</span></div>
+      <div class="body">
+        <div class="appt" style="background: var(--p3-light); color: var(--p3-dark);">
+          <svg class="wc-back" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="a3a" cx="30%" cy="80%" r="55%">
+                <stop offset="0%" stop-color="#A8D0CA" stop-opacity="0.32"/>
+                <stop offset="100%" stop-color="#A8D0CA" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <ellipse cx="120" cy="400" rx="160" ry="140" fill="url(#a3a)"/>
+            </g>
+            <g>
+              <circle cx="200" cy="350" r="1.4" fill="url(#silver-fleck)"/>
+              <circle cx="320" cy="120" r="1" fill="url(#silver-fleck)"/>
+              <circle cx="80" cy="120" r="1" fill="#E8E6E1"/>
+            </g>
+          </svg>
+          <div class="center">
+            <img class="logo logo--full" src="assets/brand/full__p3Dark.png" alt=""/>
+          </div>
+          <div class="foot"><span>next appointment</span><span>03 · 12 · 26</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="head"><span class="t">B — Editorial Tile</span><span class="s">1080 × 1080 · social</span></div>
+      <div class="body">
+        <div class="social" style="background: var(--p3-light); color: var(--p3-dark);">
+          <svg class="wc-back" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="a3b" cx="80%" cy="80%" r="55%">
+                <stop offset="0%" stop-color="#A8D0CA" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#A8D0CA" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="a3c" cx="20%" cy="20%" r="40%">
+                <stop offset="0%" stop-color="#A8D0CA" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#A8D0CA" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <ellipse cx="400" cy="400" rx="200" ry="170" fill="url(#a3b)"/>
+              <ellipse cx="100" cy="100" rx="160" ry="130" fill="url(#a3c)"/>
+            </g>
+            <g>
+              <circle cx="280" cy="280" r="1.4" fill="url(#silver-fleck)"/>
+              <circle cx="380" cy="180" r="1.2" fill="url(#silver-fleck)"/>
+            </g>
+          </svg>
+          <div class="corner-mark"><img class="logo logo--horizontal" src="assets/brand/horizontal__p3Dark.png" alt=""/></div>
+          <div class="text">
+            <div class="h">Studio<br/><em>residencies</em><br/>by appointment.</div>
+            <div class="s">Winter Hours — 09 → 18</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="head"><span class="t">C — Foil Mark</span><span class="s">matte silver on chalk</span></div>
+      <div class="body">
+        <div class="foil-card" style="background: var(--p3-light); color: var(--p3-dark);">
+          <svg class="wc-back" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="a3d" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#A8D0CA" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#A8D0CA" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g style="mix-blend-mode: multiply;" filter="url(#wc-edge-big)">
+              <ellipse cx="250" cy="300" rx="220" ry="200" fill="url(#a3d)"/>
+            </g>
+          </svg>
+          <div class="stage">
+            <img class="logo logo--monogram" src="assets/brand/monogram__brushed.png" alt=""/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     COMPARISON MATRIX
+     ════════════════════════════════════════════════ -->
+<section data-screen-label="05 Comparison" style="background: var(--paper-2);">
+  <div class="section-head">
+    <div>
+      <div class="section-index">05 · Side by side</div>
+      <h2 class="display">At a<br/><span class="italic">glance.</span></h2>
+    </div>
+    <div class="body">
+      <p>Read horizontally to compare one attribute across all three. The columns are not a ranking — they sit at different points on the same axis between fresh and quiet. Pick the position, then the palette follows.</p>
+    </div>
+  </div>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>01 · Atelier Lagoon</th>
+          <th>02 · Mineral Tide</th>
+          <th>03 · Overcast Celadon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Aesthetic</th>
+          <td>Sunlit, vibrant, summer-led</td>
+          <td>Stormy, ink-deep, cinematic</td>
+          <td>Foggy, ceramic, whispered</td>
+        </tr>
+        <tr>
+          <th>Composition</th>
+          <td>Centred bloom + satellites</td>
+          <td>Diagonal tideline, corner-to-corner</td>
+          <td>Off-centre breath, mostly empty</td>
+        </tr>
+        <tr>
+          <th>Primary dark</th>
+          <td><span class="dot" style="background:var(--p1-dark);"></span>Deep Reef · #0F2832</td>
+          <td><span class="dot" style="background:var(--p2-dark);"></span>Slate Bathystem · #19353A</td>
+          <td><span class="dot" style="background:var(--p3-dark);"></span>Driftwood Graphite · #2A3835</td>
+        </tr>
+        <tr>
+          <th>Claire turquoise</th>
+          <td><span class="dot" style="background:var(--p1-claire);"></span>Lagoon Light · #3FBFB6</td>
+          <td><span class="dot" style="background:var(--p2-claire);"></span>Tide Glass · #4A9A92</td>
+          <td><span class="dot" style="background:var(--p3-claire);"></span>Sea Mist · #A8D0CA</td>
+        </tr>
+        <tr>
+          <th>Jade winter</th>
+          <td><span class="dot" style="background:var(--p1-jade);"></span>Cypress Shadow · #1F605D</td>
+          <td><span class="dot" style="background:var(--p2-jade);"></span>Quarry Jade · #1B4A47</td>
+          <td><span class="dot" style="background:var(--p3-jade);"></span>Harbour Pine · #5C8480</td>
+        </tr>
+        <tr>
+          <th>Light neutral</th>
+          <td><span class="dot" style="background:var(--p1-light);"></span>Bone Sand · #F6F1E2</td>
+          <td><span class="dot" style="background:var(--p2-light);"></span>Beach Linen · #EDE6D4</td>
+          <td><span class="dot" style="background:var(--p3-light);"></span>Chalk Plaster · #EFEADD</td>
+        </tr>
+        <tr>
+          <th>Silver behaviour</th>
+          <td>Dust — scattered foil flecks</td>
+          <td>Vein — a single foil line</td>
+          <td>Whisper — 5–7 catchlights, matte</td>
+        </tr>
+        <tr>
+          <th>3-ring application</th>
+          <td>All three rings · PMS 8001</td>
+          <td>Outer foil · inner two inked</td>
+          <td>Outer matte · inner two tinted</td>
+        </tr>
+        <tr>
+          <th>Print fidelity</th>
+          <td>Coated only; uncoated muddies</td>
+          <td>Cotton or watercolour stock</td>
+          <td>Forgiving across every stock</td>
+        </tr>
+        <tr>
+          <th>If the client says…</th>
+          <td>"Push the freshness — we want summer."</td>
+          <td>"Make it feel cinematic and editorial."</td>
+          <td>"Quieter. Less colour. More restraint."</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     APPENDIX — SILVER FINISHES
+     ════════════════════════════════════════════════ -->
+<section class="appendix" data-screen-label="06 Silver Appendix">
+  <div class="section-head">
+    <div>
+      <div class="section-index">06 · Appendix</div>
+      <h2 class="display">One silver,<br/><span class="italic">four finishes.</span></h2>
+    </div>
+    <div class="body">
+      <p>The client leans toward silver on the 3-ring border. We recommend specifying silver as a <em>material</em>, not a colour — the same Pantone struck in different finishes reads differently across surfaces. Each palette has a different default finish, summarised below.</p>
+      <p>The 3-ring border always retains the locked organic geometry — the silver only changes how the rings catch light.</p>
+    </div>
+  </div>
+
+  <div class="silver-strip">
+    <div class="silver-card">
+      <div class="top"><img class="logo logo--monogram" src="assets/brand/monogram__silver.png" alt=""/></div>
+      <div class="label-row"><span>01 · Hot Foil</span><span>PMS 8001 C</span></div>
+    </div>
+    <div class="silver-card">
+      <div class="top"><img class="logo logo--monogram" src="assets/brand/monogram__brushed.png" alt=""/></div>
+      <div class="label-row"><span>02 · Brushed</span><span>PMS 877 + matte</span></div>
+    </div>
+    <div class="silver-card">
+      <div class="top"><img class="logo logo--monogram" src="assets/brand/monogram__ink.png" alt=""/></div>
+      <div class="label-row"><span>03 · Metallic Ink</span><span>PMS 877 C</span></div>
+    </div>
+    <div class="silver-card">
+      <div class="top"><img class="logo logo--monogram is-deboss" src="assets/brand/monogram__deboss.png" alt=""/></div>
+      <div class="label-row"><span>04 · Blind Deboss</span><span>pressure only</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════ -->
+<footer>
+  <div>
+    <div class="eyebrow">thebeautyrooms · TBR</div>
+    <div class="display display-m" style="margin-top:14px;">Phase 02 — <span class="italic">colour</span> identity · v03</div>
+  </div>
+  <div>
+    <div class="label">Prepared for</div>
+    <div style="margin-top:6px;">the client &amp; salon team</div>
+  </div>
+  <div>
+    <div class="label">Next milestone</div>
+    <div style="margin-top:6px;">Printer test · selected palette only</div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var svgCache = {};
+  var BASE = 'assets/brand/';
+
+  function fillFor(src) {
+    if (src.indexOf('silver')  !== -1) return 'url(#tbr-silver)';
+    if (src.indexOf('brushed') !== -1) return 'url(#tbr-brushed)';
+    if (src.indexOf('__ink')   !== -1) return '#828080';
+    if (src.indexOf('deboss')  !== -1) return '#D0CCC4';
+    return 'currentColor';
+  }
+
+  function shapeFor(src) {
+    if (src.indexOf('horizontal') !== -1) return 'horizontal';
+    if (src.indexOf('monogram')   !== -1) return 'monogram';
+    return 'full';
+  }
+
+  function inlineSVG(img, svgText) {
+    var src  = img.getAttribute('src') || '';
+    var tmp  = document.createElement('div');
+    tmp.innerHTML = svgText;
+    var svg = tmp.firstElementChild;
+    svg.setAttribute('fill', fillFor(src));
+    svg.setAttribute('class', img.getAttribute('class') || '');
+    if (img.alt) { svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', img.alt); }
+    else         { svg.setAttribute('aria-hidden', 'true'); }
+    img.parentNode.replaceChild(svg, img);
+  }
+
+  function fetchSVG(name, callback) {
+    if (svgCache[name]) { callback(svgCache[name]); return; }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', BASE + name + '.svg');
+    xhr.onload = function () {
+      if (xhr.status === 200) { svgCache[name] = xhr.responseText; callback(svgCache[name]); }
+    };
+    xhr.send();
+  }
+
+  function init() {
+    var imgs = document.querySelectorAll('img.logo');
+    for (var i = 0; i < imgs.length; i++) {
+      (function (img) {
+        fetchSVG(shapeFor(img.getAttribute('src') || ''), function (t) { inlineSVG(img, t); });
+      })(imgs[i]);
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+}());
+</script>
+</body>
+</html>
